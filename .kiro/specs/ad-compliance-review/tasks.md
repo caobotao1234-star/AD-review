@@ -101,7 +101,7 @@
 
   - [x] 3.10 Git commit：`feat: 实现全部工具集（vision, keywords, rag, consistency, category）`
 
-- [-] 4. 阶段四：Agent 主控（LangGraph ReAct）
+- [x] 4. 阶段四：Agent 主控（LangGraph ReAct）
   - [x] 4.1 实现 Agent 主控 `src/agent.py`
     - 使用 LangGraph 构建 ReAct Agent
     - 注册所有工具（vision_analyze, keyword_match, rag_search, check_consistency, get_category_rules）
@@ -124,10 +124,10 @@
     - **Property 6: 法条引用格式合规**
     - **Validates: Requirements 4.3**
 
-  - [-] 4.5 Git commit：`feat: 实现 LangGraph ReAct Agent 主控`
+  - [x] 4.5 Git commit：`feat: 实现 LangGraph ReAct Agent 主控`
 
-- [ ] 5. 阶段五：批量运行入口 + 置信度 + 复核队列
-  - [ ] 5.1 实现置信度评估逻辑
+- [-] 5. 阶段五：批量运行入口 + 置信度 + 复核队列
+  - [x] 5.1 实现置信度评估逻辑
     - 在 `src/confidence.py` 中实现双重推理置信度计算
     - 对同一证据做两次独立推理（不同 prompt 变体）
     - 比较两次判断一致性，一致则高置信度，不一致则低置信度
@@ -138,7 +138,7 @@
     - **Property 10: 置信度计算一致性**
     - **Validates: Requirements 8.3, 8.4, 8.5**
 
-  - [ ] 5.3 实现人工复核队列写入
+  - [x] 5.3 实现人工复核队列写入
     - 在 `src/review_queue.py` 中实现低置信度案例写入 `review_queue/` 目录
     - 写入 JSON 包含所有案例详情 + `human_decision: null` + `review_notes: null`
     - _Requirements: 9.1, 9.2, 9.4_
@@ -147,7 +147,7 @@
     - **Property 11: 低置信度案例路由到复核队列**
     - **Validates: Requirements 9.1, 9.2**
 
-  - [ ] 5.5 实现批量运行入口 `main.py`
+  - [x] 5.5 实现批量运行入口 `main.py`
     - 验证 input/ 目录中的 Case_Pairs
     - 检查批量大小限制
     - 逐个调用 Agent 审查（含置信度评估）
@@ -155,10 +155,10 @@
     - 低置信度案例写入 `review_queue/`
     - _Requirements: 1.1, 1.4, 1.5, 12.4_
 
-  - [ ] 5.6 Git commit：`feat: 实现批量入口、置信度评估和复核队列`
+  - [-] 5.6 Git commit：`feat: 实现批量入口、置信度评估和复核队列`
 
-- [ ] 6. 阶段六：审计日志 + 输出格式化 + 复核回读
-  - [ ] 6.1 实现审计日志记录
+- [-] 6. 阶段六：审计日志 + 输出格式化 + 复核回读
+  - [x] 6.1 实现审计日志记录
     - 在 `src/audit_log.py` 中实现 AuditLogger 类
     - 记录每步推理：timestamp, case_id, step_number, step_type, tool_name, tool_input, tool_output, content
     - 持久化到 `logs/{case_id}_{timestamp}.json`
@@ -169,7 +169,7 @@
     - **Property 13: 审计日志完整性**
     - **Validates: Requirements 10.1, 10.2, 10.4**
 
-  - [ ] 6.3 实现结果输出格式化
+  - [x] 6.3 实现结果输出格式化
     - 确保 ReviewResult 序列化为完整 JSON（含所有必需字段）
     - 无违规时 violation_types 为空列表，recommended_action 为 "通过"
     - 批量结果写入 `output/results.json`
@@ -183,7 +183,7 @@
     - **Property 15: 无违规结果格式**
     - **Validates: Requirements 12.3**
 
-  - [ ] 6.6 实现复核决定回读脚本 `scripts/review_reader.py`
+  - [x] 6.6 实现复核决定回读脚本 `scripts/review_reader.py`
     - 读取 `review_queue/` 中已填写 human_decision 的 JSON 文件
     - 汇总复核结果并打印
     - _Requirements: 9.3_
