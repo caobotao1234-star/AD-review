@@ -6,7 +6,7 @@
 
 ## Tasks
 
-- [-] 1. 阶段一：项目骨架 + 配置 + 数据模型
+- [x] 1. 阶段一：项目骨架 + 配置 + 数据模型
   - [x] 1.1 初始化项目结构和依赖配置
     - 创建项目目录结构：`src/`, `src/tools/`, `scripts/`, `data/`, `tests/`, `input/`, `output/`, `review_queue/`, `logs/`, `ref/`
     - 创建 `pyproject.toml`，声明依赖：langgraph, langchain-openai, chromadb, python-docx, hypothesis, pytest
@@ -33,10 +33,10 @@
     - **Property 2: 批量大小限制**
     - **Validates: Requirements 1.4, 1.5**
 
-  - [-] 1.6 Git commit：`feat: 初始化项目骨架、配置和数据模型`
+  - [x] 1.6 Git commit：`feat: 初始化项目骨架、配置和数据模型`
 
-- [ ] 2. 阶段二：RAG 构建脚本
-  - [ ] 2.1 实现 RAG 构建脚本 `scripts/build_rag.py`
+- [-] 2. 阶段二：RAG 构建脚本
+  - [x] 2.1 实现 RAG 构建脚本 `scripts/build_rag.py`
     - 使用 python-docx 读取 `ref/中华人民共和国广告法_20210429.docx`
     - 按正则 `第.+?条` 切分法条，提取法规名、章节、条款号作为 metadata
     - 使用 Doubao-embedding 模型向量化每条法条
@@ -49,7 +49,7 @@
     - **Property 5: 法条切分正确性（RAG 构建 Round-Trip）**
     - **Validates: Requirements 4.1**
 
-  - [ ] 2.3 Git commit：`feat: 实现 RAG 法条构建脚本`
+  - [-] 2.3 Git commit：`feat: 实现 RAG 法条构建脚本`
 
 - [ ] 3. 阶段三：工具集实现
   - [ ] 3.1 实现视觉分析工具 `src/tools/vision.py`
