@@ -35,7 +35,7 @@
 
   - [x] 1.6 Git commit：`feat: 初始化项目骨架、配置和数据模型`
 
-- [-] 2. 阶段二：RAG 构建脚本
+- [x] 2. 阶段二：RAG 构建脚本
   - [x] 2.1 实现 RAG 构建脚本 `scripts/build_rag.py`
     - 使用 python-docx 读取 `ref/中华人民共和国广告法_20210429.docx`
     - 按正则 `第.+?条` 切分法条，提取法规名、章节、条款号作为 metadata
@@ -49,10 +49,10 @@
     - **Property 5: 法条切分正确性（RAG 构建 Round-Trip）**
     - **Validates: Requirements 4.1**
 
-  - [-] 2.3 Git commit：`feat: 实现 RAG 法条构建脚本`
+  - [x] 2.3 Git commit：`feat: 实现 RAG 法条构建脚本`
 
-- [ ] 3. 阶段三：工具集实现
-  - [ ] 3.1 实现视觉分析工具 `src/tools/vision.py`
+- [-] 3. 阶段三：工具集实现
+  - [x] 3.1 实现视觉分析工具 `src/tools/vision.py`
     - 实现 `vision_analyze(image_path: str) -> VisionResult`
     - 调用 Doubao-1.5-vision-pro-32k，传入图片 base64 和结构化 prompt
     - 解析模型返回为 VisionResult（提取文字 + 视觉违规线索）
@@ -63,7 +63,7 @@
     - **Property 3: 视觉分析结果结构完整性**
     - **Validates: Requirements 2.3**
 
-  - [ ] 3.3 实现关键词检测工具 `src/tools/keywords.py`
+  - [x] 3.3 实现关键词检测工具 `src/tools/keywords.py`
     - 创建 `data/keywords.json` 关键词库（包含绝对化用语、医疗暗示等各类违规关键词）
     - 实现 `keyword_match(text: str) -> list[KeywordHit]`
     - 遍历关键词库，匹配文本中出现的关键词，返回命中列表（含上下文）
@@ -73,13 +73,13 @@
     - **Property 4: 关键词匹配完整性**
     - **Validates: Requirements 3.1, 3.4**
 
-  - [ ] 3.5 实现 RAG 检索工具 `src/tools/rag.py`
+  - [x] 3.5 实现 RAG 检索工具 `src/tools/rag.py`
     - 实现 `rag_search(query: str, top_k: int = 3) -> list[LawArticle]`
     - 连接 ChromaDB，使用 Doubao-embedding 向量化 query，检索最相关法条
     - 返回 LawArticle 列表（含法规名、条款号、原文、相关度分数）
     - _Requirements: 4.2, 4.3, 4.5_
 
-  - [ ] 3.6 实现图文一致性校验工具 `src/tools/consistency.py`
+  - [x] 3.6 实现图文一致性校验工具 `src/tools/consistency.py`
     - 实现 `check_consistency(extracted_text: str, product_json: dict) -> list[Contradiction]`
     - 对比图片文字与 JSON 中的 price, efficacy_claims, specifications, origin 字段
     - 返回矛盾点列表，每项指明图片文案段、JSON 字段和矛盾描述
@@ -89,7 +89,7 @@
     - **Property 7: 图文矛盾检测结构完整性**
     - **Validates: Requirements 5.2, 5.3**
 
-  - [ ] 3.8 实现类目规则查询工具 `src/tools/category.py`
+  - [x] 3.8 实现类目规则查询工具 `src/tools/category.py`
     - 创建 `data/category_rules.json`（医疗器械、保健食品、金融、教育培训的加严规则）
     - 实现 `get_category_rules(category: str) -> CategoryRuleSet`
     - 未知类目返回通用规则并记录日志
@@ -99,7 +99,7 @@
     - **Property 8: 类目规则返回正确性**
     - **Validates: Requirements 6.1, 6.3**
 
-  - [ ] 3.10 Git commit：`feat: 实现全部工具集（vision, keywords, rag, consistency, category）`
+  - [-] 3.10 Git commit：`feat: 实现全部工具集（vision, keywords, rag, consistency, category）`
 
 - [ ] 4. 阶段四：Agent 主控（LangGraph ReAct）
   - [ ] 4.1 实现 Agent 主控 `src/agent.py`

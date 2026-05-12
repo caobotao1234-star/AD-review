@@ -1,0 +1,32 @@
+{
+  "医疗器械": {
+    "prohibited_claims": ["治愈", "根治", "100%有效", "无副作用", "替代手术"],
+    "required_disclaimers": ["请遵医嘱", "请在医生指导下使用"],
+    "extra_keywords": ["临床验证", "医学证明", "专利疗法", "FDA认证"],
+    "severity_boost": true
+  },
+  "保健食品": {
+    "prohibited_claims": ["治疗", "替代药物", "治愈疾病", "药效"],
+    "required_disclaimers": ["本品不能代替药物", "保健食品不是药物"],
+    "extra_keywords": ["疗效", "药效", "处方", "临床"],
+    "severity_boost": true
+  },
+  "金融": {
+    "prohibited_claims": ["保本保息", "零风险", "稳赚不赔", "高收益无风险"],
+    "required_disclaimers": ["投资有风险", "过往业绩不代表未来表现"],
+    "extra_keywords": ["年化收益", "保本", "刚兑", "内部渠道"],
+    "severity_boost": true
+  },
+  "教育培训": {
+    "prohibited_claims": ["包过", "保就业", "100%通过率", "不过全额退款"],
+    "required_disclaimers": [],
+    "extra_keywords": ["名师", "押题", "内部资料", "官方合作"],
+    "severity_boost": false
+  },
+  "_default": {
+    "prohibited_claims": [],
+    "required_disclaimers": [],
+    "extra_keywords": [],
+    "severity_boost": false
+  }
+}
