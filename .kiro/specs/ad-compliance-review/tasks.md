@@ -126,7 +126,7 @@
 
   - [x] 4.5 Git commit：`feat: 实现 LangGraph ReAct Agent 主控`
 
-- [-] 5. 阶段五：批量运行入口 + 置信度 + 复核队列
+- [x] 5. 阶段五：批量运行入口 + 置信度 + 复核队列
   - [x] 5.1 实现置信度评估逻辑
     - 在 `src/confidence.py` 中实现双重推理置信度计算
     - 对同一证据做两次独立推理（不同 prompt 变体）
@@ -155,9 +155,9 @@
     - 低置信度案例写入 `review_queue/`
     - _Requirements: 1.1, 1.4, 1.5, 12.4_
 
-  - [-] 5.6 Git commit：`feat: 实现批量入口、置信度评估和复核队列`
+  - [x] 5.6 Git commit：`feat: 实现批量入口、置信度评估和复核队列`
 
-- [-] 6. 阶段六：审计日志 + 输出格式化 + 复核回读
+- [x] 6. 阶段六：审计日志 + 输出格式化 + 复核回读
   - [x] 6.1 实现审计日志记录
     - 在 `src/audit_log.py` 中实现 AuditLogger 类
     - 记录每步推理：timestamp, case_id, step_number, step_type, tool_name, tool_input, tool_output, content
@@ -192,16 +192,16 @@
     - **Property 12: 复核决定回读 Round-Trip**
     - **Validates: Requirements 9.3**
 
-  - [ ] 6.8 Git commit：`feat: 实现审计日志、输出格式化和复核回读`
+  - [x] 6.8 Git commit：`feat: 实现审计日志、输出格式化和复核回读`
 
-- [ ] 7. 阶段七：测试数据生成提示词 + 使用说明
-  - [ ] 7.1 创建测试数据生成提示词文档
+- [-] 7. 阶段七：测试数据生成提示词 + 使用说明
+  - [x] 7.1 创建测试数据生成提示词文档
     - 在 `docs/test_data_prompt.md` 中编写 GPT 提示词
     - 提示词应指导生成：Product_JSON 样例（覆盖各类目和违规类型）、对应的广告图片描述
     - 包含正常案例和各种违规案例的生成指引
     - _Requirements: 1.1_
 
-  - [ ] 7.2 创建项目使用说明 README.md
+  - [x] 7.2 创建项目使用说明 README.md
     - 环境配置说明（.env 配置、依赖安装）
     - RAG 构建步骤（`python scripts/build_rag.py`）
     - 运行方式（`python main.py`）
@@ -209,7 +209,7 @@
     - 复核队列使用方式
     - _Requirements: 全部_
 
-  - [ ] 7.3 Git commit：`docs: 添加测试数据生成提示词和使用说明`
+  - [-] 7.3 Git commit：`docs: 添加测试数据生成提示词和使用说明`
 
 - [ ] 8. 最终检查点
   - 确保所有测试通过，ask the user if questions arise.
