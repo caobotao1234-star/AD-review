@@ -95,8 +95,14 @@ def build_chroma_db(articles: list[dict], db_path: str):
     """将法条存入 ChromaDB（使用 ChromaDB 内置 embedding）"""
     chroma_client = chromadb.PersistentClient(path=db_path)
 
-    # 创建或获取 collection（使用默认的 all-MiniLM-L6-v2 embedding）
-    collection = chroma_client.get_or_create_collection(
+    # 删除旧 collection（如果存在），确保干净重建
+    try:
+        chroma_client.delete_collection("law_articles")
+    except Exception:
+        pass
+
+    # 创建 collection（使用默认的 all-MiniLM-L6-v2 embedding）
+    collection = chroma_client.create_collection(
         name="law_articles",
         metadata={"description": "广告法及相关法规条款"}
     )
@@ -108,7 +114,8 @@ def build_chroma_db(articles: list[dict], db_path: str):
     for start in range(0, total, batch_size):
         batch = articles[start:start + batch_size]
         texts = [a["content"] for a in batch]
-        ids = [f"{a['law_name']}_{a['article_number']}" for a in batch]
+        # 用全局索引确保 ID 唯一
+        ids = [f"{a['law_name']}_{start + i}_{a['article_number']}" for i, a in enumerate(batch)]
         metadatas = [
             {
                 "law_name": a["law_name"],
