@@ -1,0 +1,11 @@
+{
+  "user_id": "user_003",
+  "title": "美白精华液",
+  "category": "护肤品",
+  "price": "128元",
+  "original_price": "399元",
+  "efficacy_claims": ["全网最强美白", "第一品牌", "史上最有效"],
+  "specifications": "30ml/瓶",
+  "origin": "广州",
+  "certifications": ["全球领先配方"]
+}

@@ -1,0 +1,17 @@
+{
+  "user_id": "user_002",
+  "title": "草本助眠保健品",
+  "category": "保健食品",
+  "price": "199元",
+  "original_price": "399元",
+  "efficacy_claims": [
+    "根治失眠",
+    "治愈神经衰弱",
+    "药到病除"
+  ],
+  "specifications": "30粒/瓶",
+  "origin": "中国",
+  "certifications": [
+    "祖传秘方"
+  ]
+}

@@ -27,7 +27,6 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from docx import Document
-from openai import OpenAI
 from dotenv import load_dotenv
 import chromadb
 
@@ -92,27 +91,17 @@ def split_by_articles(full_text: str, law_name: str) -> list[dict]:
     return articles
 
 
-def get_embeddings(texts: list[str], client: OpenAI, model: str) -> list[list[float]]:
-    """批量获取文本 embedding"""
-    # 火山方舟 embedding API 兼容 OpenAI 格式
-    response = client.embeddings.create(
-        model=model,
-        input=texts,
-    )
-    return [item.embedding for item in response.data]
-
-
-def build_chroma_db(articles: list[dict], client: OpenAI, model: str, db_path: str):
-    """将法条向量化并存入 ChromaDB"""
+def build_chroma_db(articles: list[dict], db_path: str):
+    """将法条存入 ChromaDB（使用 ChromaDB 内置 embedding）"""
     chroma_client = chromadb.PersistentClient(path=db_path)
 
-    # 创建或获取 collection
+    # 创建或获取 collection（使用默认的 all-MiniLM-L6-v2 embedding）
     collection = chroma_client.get_or_create_collection(
         name="law_articles",
         metadata={"description": "广告法及相关法规条款"}
     )
 
-    # 批量处理（每批最多 20 条，避免 API 限制）
+    # 批量处理
     batch_size = 20
     total = len(articles)
 
@@ -129,13 +118,9 @@ def build_chroma_db(articles: list[dict], client: OpenAI, model: str, db_path: s
             for a in batch
         ]
 
-        # 获取 embeddings
-        embeddings = get_embeddings(texts, client, model)
-
-        # 存入 ChromaDB
+        # ChromaDB 自动使用内置 embedding 模型
         collection.upsert(
             ids=ids,
-            embeddings=embeddings,
             documents=texts,
             metadatas=metadatas,
         )
@@ -151,18 +136,6 @@ def main():
     print("RAG 法条构建工具")
     print("=" * 60)
 
-    # 检查配置
-    api_key = os.getenv("ARK_API_KEY")
-    base_url = os.getenv("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3")
-    embedding_model = os.getenv("ARK_EMBEDDING_MODEL")
-
-    if not api_key:
-        print("❌ 错误: 请在 .env 文件中配置 ARK_API_KEY")
-        sys.exit(1)
-    if not embedding_model:
-        print("❌ 错误: 请在 .env 文件中配置 ARK_EMBEDDING_MODEL")
-        sys.exit(1)
-
     # 扫描 ref/ 目录
     ref_dir = Path(project_root) / "ref"
     docx_files = list(ref_dir.glob("*.docx"))
@@ -175,8 +148,8 @@ def main():
     for f in docx_files:
         print(f"   - {f.name}")
 
-    # 初始化 OpenAI 客户端（火山方舟兼容）
-    client = OpenAI(api_key=api_key, base_url=base_url)
+    # 初始化（不再需要 API 客户端，使用 ChromaDB 内置 embedding）
+    print("\n💡 使用 ChromaDB 内置 embedding 模型（无需外部 API）")
 
     # 处理每个文件
     all_articles = []
@@ -203,11 +176,11 @@ def main():
 
         all_articles.extend(articles)
 
-    # 向量化并存入 ChromaDB
+    # 存入 ChromaDB
     db_path = str(Path(project_root) / "data" / "chroma_db")
     print(f"\n🔄 正在向量化并存入 ChromaDB ({db_path})...")
 
-    collection = build_chroma_db(all_articles, client, embedding_model, db_path)
+    collection = build_chroma_db(all_articles, db_path)
 
     print(f"\n✅ 构建完成!")
     print(f"   总条款数: {len(all_articles)}")
@@ -216,8 +189,7 @@ def main():
 
     # 测试检索
     print(f"\n🔍 测试检索: '虚假广告'")
-    test_embedding = get_embeddings(["虚假广告"], client, embedding_model)[0]
-    results = collection.query(query_embeddings=[test_embedding], n_results=3)
+    results = collection.query(query_texts=["虚假广告"], n_results=3)
     if results and results["documents"]:
         for i, (doc, meta) in enumerate(zip(results["documents"][0], results["metadatas"][0])):
             preview = doc[:60] + "..." if len(doc) > 60 else doc

@@ -1,20 +1,9 @@
 """RAG 法条检索工具：从 ChromaDB 检索相关法律条款"""
 
-from openai import OpenAI
 import chromadb
 
-from src.config import ARK_API_KEY, ARK_BASE_URL, ARK_EMBEDDING_MODEL, CHROMA_DB_DIR
+from src.config import CHROMA_DB_DIR
 from src.models import LawArticle
-
-
-def _get_embedding(text: str) -> list[float]:
-    """获取文本 embedding"""
-    client = OpenAI(api_key=ARK_API_KEY, base_url=ARK_BASE_URL)
-    response = client.embeddings.create(
-        model=ARK_EMBEDDING_MODEL,
-        input=[text],
-    )
-    return response.data[0].embedding
 
 
 def rag_search(query: str, top_k: int = 3) -> list[LawArticle]:
@@ -36,12 +25,9 @@ def rag_search(query: str, top_k: int = 3) -> list[LawArticle]:
     except Exception:
         return []  # 数据库未构建
 
-    # 向量化查询
-    query_embedding = _get_embedding(query)
-
-    # 检索
+    # 使用 ChromaDB 内置 embedding 检索
     results = collection.query(
-        query_embeddings=[query_embedding],
+        query_texts=[query],
         n_results=top_k,
     )
 

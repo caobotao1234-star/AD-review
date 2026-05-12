@@ -1,0 +1,11 @@
+{
+  "user_id": "user_004",
+  "title": "家用电子血压仪",
+  "category": "医疗器械",
+  "price": "299元",
+  "original_price": "599元",
+  "efficacy_claims": ["100%精准测量", "替代医院检查", "无副作用"],
+  "specifications": "臂式电子血压计",
+  "origin": "深圳",
+  "certifications": ["FDA认证", "三甲医院推荐"]
+}

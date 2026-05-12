@@ -1,0 +1,11 @@
+{
+"user_id": "user_006",
+"title": "公务员考试培训班",
+"category": "教育培训",
+"price": "4999元",
+"original_price": "9999元",
+"efficacy_claims": ["包过", "100%通过率", "不过全额退款"],
+"specifications": "线上+线下 6个月",
+"origin": "北京",
+"certifications": ["内部资料", "命题组老师授课"]
+}

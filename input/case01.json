@@ -1,0 +1,16 @@
+{
+  "user_id": "user_001",
+  "title": "维生素C片",
+  "category": "保健食品",
+  "price": "89元",
+  "original_price": "129元",
+  "efficacy_claims": [
+    "补充维生素C",
+    "增强免疫力"
+  ],
+  "specifications": "60片/瓶",
+  "origin": "中国",
+  "certifications": [
+    "蓝帽子保健食品批准文号"
+  ]
+}

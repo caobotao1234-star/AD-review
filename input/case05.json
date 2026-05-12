@@ -1,0 +1,11 @@
+{
+"user_id": "user_005",
+"title": "理财训练营课程",
+"category": "金融",
+"price": "9.9元",
+"original_price": "2999元",
+"efficacy_claims": ["保本保息", "年化收益30%", "零风险稳赚不赔"],
+"specifications": "线上课程 30天",
+"origin": "北京",
+"certifications": ["内部渠道", "专业操盘手带队"]
+}
