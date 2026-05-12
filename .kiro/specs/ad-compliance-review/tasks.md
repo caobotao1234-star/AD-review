@@ -51,7 +51,7 @@
 
   - [x] 2.3 Git commit：`feat: 实现 RAG 法条构建脚本`
 
-- [-] 3. 阶段三：工具集实现
+- [x] 3. 阶段三：工具集实现
   - [x] 3.1 实现视觉分析工具 `src/tools/vision.py`
     - 实现 `vision_analyze(image_path: str) -> VisionResult`
     - 调用 Doubao-1.5-vision-pro-32k，传入图片 base64 和结构化 prompt
@@ -99,10 +99,10 @@
     - **Property 8: 类目规则返回正确性**
     - **Validates: Requirements 6.1, 6.3**
 
-  - [-] 3.10 Git commit：`feat: 实现全部工具集（vision, keywords, rag, consistency, category）`
+  - [x] 3.10 Git commit：`feat: 实现全部工具集（vision, keywords, rag, consistency, category）`
 
-- [ ] 4. 阶段四：Agent 主控（LangGraph ReAct）
-  - [ ] 4.1 实现 Agent 主控 `src/agent.py`
+- [-] 4. 阶段四：Agent 主控（LangGraph ReAct）
+  - [x] 4.1 实现 Agent 主控 `src/agent.py`
     - 使用 LangGraph 构建 ReAct Agent
     - 注册所有工具（vision_analyze, keyword_match, rag_search, check_consistency, get_category_rules）
     - 配置 Doubao-1.5-pro-32k 作为推理模型
@@ -110,7 +110,7 @@
     - Agent 自主决定工具调用顺序，收集足够证据后终止循环
     - _Requirements: 11.1, 11.2, 11.3, 11.4_
 
-  - [ ] 4.2 实现违规判定和分级逻辑
+  - [x] 4.2 实现违规判定和分级逻辑
     - 在 Agent 最终推理中分类违规类型（绝对化用语、虚构承诺、虚假对比、医疗暗示、价格欺诈、资质伪造）
     - 根据违规严重度分配处理建议（下架/限流/标注）
     - 确保法条引用格式为 `《法规名》第X条第Y项`
@@ -124,7 +124,7 @@
     - **Property 6: 法条引用格式合规**
     - **Validates: Requirements 4.3**
 
-  - [ ] 4.5 Git commit：`feat: 实现 LangGraph ReAct Agent 主控`
+  - [-] 4.5 Git commit：`feat: 实现 LangGraph ReAct Agent 主控`
 
 - [ ] 5. 阶段五：批量运行入口 + 置信度 + 复核队列
   - [ ] 5.1 实现置信度评估逻辑
