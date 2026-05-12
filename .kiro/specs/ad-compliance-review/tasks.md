@@ -194,7 +194,7 @@
 
   - [x] 6.8 Git commit：`feat: 实现审计日志、输出格式化和复核回读`
 
-- [-] 7. 阶段七：测试数据生成提示词 + 使用说明
+- [x] 7. 阶段七：测试数据生成提示词 + 使用说明
   - [x] 7.1 创建测试数据生成提示词文档
     - 在 `docs/test_data_prompt.md` 中编写 GPT 提示词
     - 提示词应指导生成：Product_JSON 样例（覆盖各类目和违规类型）、对应的广告图片描述
@@ -209,7 +209,7 @@
     - 复核队列使用方式
     - _Requirements: 全部_
 
-  - [-] 7.3 Git commit：`docs: 添加测试数据生成提示词和使用说明`
+  - [x] 7.3 Git commit：`docs: 添加测试数据生成提示词和使用说明`
 
 - [ ] 8. 最终检查点
   - 确保所有测试通过，ask the user if questions arise.
